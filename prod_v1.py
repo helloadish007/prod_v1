@@ -66,12 +66,14 @@ alp=df1[hsi]
 
 
 
-st.write('**ORIGINAL OUTPUT  :**')
+#st.write('**ORIGINAL OUTPUT  :**')
+annotate_text('ORIGINAL OUTPUT :',color="#8ef", border="1px dashed red")
 if start >= 0 and end >= 0 :
     
     annotated_text(alp[:start],(alp[start:end],tag),alp[end:])
     st.write("##")
-    st.write('**CHANGED OUTPUT  :**')
+    #st.write('**CHANGED OUTPUT  :**')
+    annotate_text('CHANGED OUTPUT  :',color="#8af", border="1px dashed red")
 
     if (type(s)==float and type(e)==float):
         annotated_text((h,tag))
