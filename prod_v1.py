@@ -7,7 +7,12 @@ from annotated_text import annotated_text
 
 
 #df=pd.read_csv(r'C:\Users\0019ZC744\Desktop\nh1.csv')
-df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+@st.cache
+def load_data():
+    df = pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+    return df
+#df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+df=load_data()
 st.header(' ANNOTATION TOOL ')
 option = st.sidebar.selectbox(
     'Select the System :',
