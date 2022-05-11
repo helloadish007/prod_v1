@@ -7,7 +7,7 @@ from annotated_text import annotated_text
 
 
 #df=pd.read_csv(r'C:\Users\0019ZC744\Desktop\nh1.csv')
-df=pd.read_csv(r'https://github.com/helloadish007/prod_v1/blob/f4ca0a5008d95ecab874cb63a24672e63f4304b2/nh2.csv')
+df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
 st.header(' ANNOTATION TOOL ')
 option = st.sidebar.selectbox(
     'Select the System :',
@@ -82,7 +82,7 @@ if start >= 0 and end >= 0 :
     if st.button('Submit'):
         df.loc[hsi,'hallucinated_span']=change
         #df.to_csv(r'C:\Users\0019ZC744\Desktop\nh1.csv',index=False)
-        df.to_csv(r'https://github.com/helloadish007/prod_v1/blob/f4ca0a5008d95ecab874cb63a24672e63f4304b2/nh2.csv')
+        df.to_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
         st.experimental_rerun()
         
 else:
