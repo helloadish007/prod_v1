@@ -107,6 +107,7 @@ if agree:
         file_name='changes.csv',
         mime='text/csv',
     )
+    st.info('The annotated changes can be seen in hallucinated_span column :) ')
 
 
 
