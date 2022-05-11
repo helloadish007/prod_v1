@@ -6,13 +6,8 @@ from math import ceil
 from annotated_text import annotated_text
 
 
-#df=pd.read_csv(r'C:\Users\0019ZC744\Desktop\nh1.csv')
-@st.cache
-def load_data():
-    df = pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
-    return df
-#df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
-df=load_data()
+df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+
 st.header(' ANNOTATION TOOL ')
 option = st.sidebar.selectbox(
     'Select the System :',
@@ -34,7 +29,10 @@ with st.sidebar.expander("Annotation info: "):
      st.sidebar.image("https://apaie2022.net/wp-content/uploads/2019/05/APAIE2020_header_bg_4.png")
      st.header(' S : source sequence  ')
      st.header(' G : output sequence  ')
-row = df.loc[df['system'] == option]
+if "updated_df" not in st.session_state:
+            st.session_state.updated_df = df
+
+row = st.session_state["updated_df"].loc[st.session_state["updated_df"]['system'] == option]
 df1= row['summary']
 
 with st.expander("How to use ?"):
@@ -66,6 +64,8 @@ tag=row['hallucination_type'][hsi]
 alp=df1[hsi]
 
 
+
+
 st.write('**ORIGINAL OUTPUT  :**')
 if start >= 0 and end >= 0 :
     
@@ -85,9 +85,7 @@ if start >= 0 and end >= 0 :
     st.write("##")
     change = st.text_input('Change Annotated Text ', '')
     if st.button('Submit'):
-        df.loc[hsi,'hallucinated_span']=change
-        #df.to_csv(r'C:\Users\0019ZC744\Desktop\nh1.csv',index=False)
-        df.to_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+        st.session_state["updated_df"].loc[hsi,'hallucinated_span']=change
         st.experimental_rerun()
         
 else:
@@ -101,7 +99,7 @@ if agree:
         # Cache the conversion to prevent computation on every rerun
         return df.to_csv().encode('utf-8')
 
-    csv = convert_df(df)
+    csv = convert_df(st.session_state["updated_df"])
 
     st.download_button(
         label="DOWNLOAD CHANGES",
