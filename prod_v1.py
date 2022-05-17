@@ -63,12 +63,12 @@ if uploaded_file is not None:
     current_end = page_number*page_size
 
 
-
+    
     hsi=int(row[current_start:current_end].index[0])
     start=int(row['hallucinated_span_start'][hsi])-1
     end=int(row['hallucinated_span_end'][hsi])
     s=row['start'][hsi]
-    h=row['hallucinated_span'][hsi]
+    h=row['hallucinated_span_new'][hsi]
     e=row['end'][hsi]
     hst=row['hallucinated_span'][hsi]
     tag=row['hallucination_type'][hsi]
@@ -96,7 +96,7 @@ if uploaded_file is not None:
         st.write("##")
         change = st.text_input('Change Annotated Text ', '')
         if st.button('Submit'):
-            st.session_state["updated_df"].loc[hsi,'hallucinated_span']=change
+            st.session_state["updated_df"].loc[hsi,'hallucinated_span_new']=change
             st.experimental_rerun()
             
     else:
@@ -108,7 +108,7 @@ if uploaded_file is not None:
         @st.cache
         def convert_df(df):
             # Cache the conversion to prevent computation on every rerun
-            return df.to_csv().encode('utf-8')
+            return df.to_csv(index=False).encode('utf-8')
 
         csv = convert_df(st.session_state["updated_df"])
 
@@ -118,6 +118,8 @@ if uploaded_file is not None:
             file_name='changes.csv',
             mime='text/csv',
         )
+
+        st.info('Changes would be reflected in hallucinated_span_new column')
 
 
 
