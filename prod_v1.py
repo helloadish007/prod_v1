@@ -9,6 +9,11 @@ from annotated_text import annotated_text
 
 dfd=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/demo0.csv')
 
+st.markdown("""
+<style>div[data-testid="stToolbar"] { display: none;}</style>
+""", unsafe_allow_html=True)
+
+
 
 st.header(' ANNOTATION TOOL ')
 option = st.sidebar.selectbox(
