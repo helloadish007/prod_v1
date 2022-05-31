@@ -1,3 +1,4 @@
+#Author : ADISH007
 from cmath import nan
 import pandas as pd
 import numpy as np
@@ -6,7 +7,9 @@ from math import ceil
 from annotated_text import annotated_text
 
 
-#df=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/nh2.csv')
+dfd=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/demo0.csv')
+
+
 st.header(' ANNOTATION TOOL ')
 option = st.sidebar.selectbox(
     'Select the System :',
@@ -25,9 +28,25 @@ with st.sidebar.expander("Annotation info: "):
         grounding in the input
      """,width=10,use_column_width=20)
     
-     st.sidebar.image("https://apaie2022.net/wp-content/uploads/2019/05/APAIE2020_header_bg_4.png")
+     
      st.header(' S : source sequence  ')
      st.header(' G : output sequence  ')
+
+with st.sidebar.expander("Demo File"):
+    @st.cache
+    def convert_df(df):
+        # IMPORTANT: Cache the conversion to prevent computation on every rerun
+        return df.to_csv().encode('utf-8')
+
+    csv = convert_df(dfd)
+
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name='demo_df.csv',
+        mime='text/csv',
+    )
+    st.sidebar.image("https://apaie2022.net/wp-content/uploads/2019/05/APAIE2020_header_bg_4.png")
 
 uploaded_file = st.file_uploader("Upload File : ", type={"csv", "txt"})
 if uploaded_file is not None:
