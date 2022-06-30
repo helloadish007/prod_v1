@@ -6,7 +6,7 @@ import streamlit as st
 from math import ceil
 from annotated_text import annotated_text
 
-
+--server.enableXsrfProtection=false
 dfd=pd.read_csv(r'https://raw.githubusercontent.com/helloadish007/prod_v1/main/demo0.csv')
 
 st.markdown("""
