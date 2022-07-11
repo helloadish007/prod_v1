@@ -36,6 +36,7 @@ with st.sidebar.expander("Annotation info: "):
      
      st.header(' S : source sequence  ')
      st.header(' G : output sequence  ')
+     st.text('Creator : ADISH007')
 
 with st.sidebar.expander("Demo File"):
     @st.cache
