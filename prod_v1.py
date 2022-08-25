@@ -54,7 +54,7 @@ with st.sidebar.expander("Demo File"):
         file_name='demo_df.csv',
         mime='text/csv',
     )
-    st.sidebar.image("https://apaie2022.net/wp-content/uploads/2019/05/APAIE2020_header_bg_4.png")
+    st.sidebar.image("https://the-dots.com/pages/google-brand-studio-134761")
 
 uploaded_file = st.file_uploader("Upload File : ", type={"csv", "txt"})
 if uploaded_file is not None:
